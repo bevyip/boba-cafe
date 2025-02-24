@@ -266,7 +266,7 @@ orderAnotherButton.addEventListener("click", function () {
   // Reset the receipt content
   document.getElementById(
     "drink-name"
-  ).innerHTML = `<p>Select your drink to generate a receipt.<p>`;
+  ).innerHTML = `<p>Select your drink to generate a receipt.</p>`;
 
   // Show the main container and hide checkout options
   document.getElementById("container").style.display = "flex";

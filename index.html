@@ -9,7 +9,15 @@
     <title>Bev's Boba Cafe</title>
     <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.min.js"></script>
+
+    <!-- OpenGraph Meta Tags -->
+    <meta property="og:title" content="Bev's Boba Cafe" />
+    <meta property="og:description"
+        content="The goal of this project is to craft a seamless, immersive, end-to-end user experience where users can fully engage in customizing their boba drink order. It transforms the process of ordering boba into a gamified experience, mimicking the fun of ordering at a café while allowing for playful customization." />
+    <meta property="og:image" content="img/opengraph.png" />
+    <meta property="og:url" content="https://bev-boba-cafe.netlify.app/" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Bev's Boba Cafe" />
 </head>
 
 <body>
@@ -19,18 +27,20 @@
         <button id="start-button">Ready to Order?</button>
     </div>
     <div id="container">
-        <!-- Drink Preview -->
-        <div id="drink-preview">
-            <img id="drink-base" src="img/cup.png" alt="Cup">
-            <img id="tea-overlay" src="" style="display: none" alt="Tea">
-            <img id="ice-overlay" src="" style="display: none" alt="Ice">
-            <img id="topping-overlay" src="" style="display: none" alt="Topping">
-        </div>
+        <div id="polaroid-wrapper">
+            <!-- Drink Preview -->
+            <div id="drink-preview">
+                <img id="drink-base" src="img/cup.png" alt="Cup">
+                <img id="tea-overlay" src="" style="display: none" alt="Tea">
+                <img id="ice-overlay" src="" style="display: none" alt="Ice">
+                <img id="topping-overlay" src="" style="display: none" alt="Topping">
+            </div>
 
-        <!-- Drink Receipt Section -->
-        <div id="receipt-container">
-            <div id="drink-name">
-                <p>Select your drink to generate a receipt.</p>
+            <!-- Drink Receipt Section -->
+            <div id="receipt-container">
+                <div id="drink-name">
+                    <p>Select your drink to generate a receipt.</p>
+                </div>
             </div>
         </div>
 
@@ -108,7 +118,20 @@
             </div>
         </div>
 
+        <!-- Alert Popup -->
+        <div id="confirmation-popup" class="confirmation-popup">
+            <div class="popup-content">
+                <p id="confirmation-message">Did you want milk with that?</p>
+                <div class="popup-buttons">
+                    <button id="yes-button" class="popup-button">Yes</button>
+                    <button id="no-button" class="popup-button">No</button>
+                </div>
+            </div>
+        </div>
+
+
     </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.min.js"></script>
     <script src="script.js"></script>
 </body>
 

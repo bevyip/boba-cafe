@@ -65,12 +65,11 @@ body {
 }
 
 #start-button:active {
-  transform: scale(0.95);
+  transform: scale(0.8);
   box-shadow: 2px 2px 0px #5c3d2e, 4px 4px 0px rgba(0, 0, 0, 0.5);
 }
 
 #start-button:hover {
-  /* background: #a37d5c; */
   border-color: #3a2417;
   box-shadow: 2px 2px 0px #3a2417, 4px 4px 0px rgba(0, 0, 0, 0.5);
 }
@@ -185,9 +184,13 @@ body {
 
 /* Ready to Check Out Button styling */
 #checkout-container {
+  opacity: 0;
   display: flex;
   justify-content: center;
-  margin-bottom: 20px;
+  bottom: 25%;
+  position: absolute;
+  transform: scale(0);
+  transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
 }
 
 #checkout-button {
@@ -212,7 +215,7 @@ body {
 }
 
 #checkout-button:active {
-  transform: scale(0.95);
+  transform: scale(0.8);
   box-shadow: 2px 2px 0px #5c3d2e, 4px 4px 0px rgba(0, 0, 0, 0.5);
 }
 
@@ -224,6 +227,7 @@ body {
   text-align: center;
   gap: 15px;
   line-height: 1.2;
+  margin-top: 20px;
 }
 
 #checkout-options h2 {
@@ -257,7 +261,7 @@ body {
 }
 
 #order-another-button:active {
-  transform: scale(0.95);
+  transform: scale(0.8);
   box-shadow: 2px 2px 0px #5c3d2e, 4px 4px 0px rgba(0, 0, 0, 0.5);
 }
 
@@ -302,13 +306,14 @@ body {
 }
 
 .tab-button.active {
-  background-color: #a37d5c;
-  border-color: #3a2417;
-  box-shadow: 2px 2px 0px #3a2417, 4px 4px 0px rgba(0, 0, 0, 0.5);
+  background: #5c3d2e;
+  border: 4px solid #3a2417;
+  box-shadow: 4px 4px 0px #5c3d2e, 6px 6px 0px rgba(0, 0, 0, 0.5);
+  transition: transform 0.2s ease, box-shadow 0.2s ease-in-out;
 }
 
 .tab-button:active {
-  transform: scale(0.95);
+  transform: scale(0.8);
   box-shadow: 2px 2px 0px #5c3d2e, 4px 4px 0px rgba(0, 0, 0, 0.5);
 }
 
@@ -355,7 +360,7 @@ body {
 }
 
 .option:active {
-  transform: scale(0.95);
+  transform: scale(0.8);
   box-shadow: 2px 2px 0px #5c3d2e, 4px 4px 0px rgba(0, 0, 0, 0.5);
 }
 
@@ -366,8 +371,8 @@ body {
 }
 
 .option.selected {
-  background-color: #a37d5c;
-  border-color: #3a2417;
+  background: #5c3d2e;
+  border: 4px solid #3a2417;
   box-shadow: 2px 2px 0px #3a2417, 4px 4px 0px rgba(0, 0, 0, 0.5);
 }
 
@@ -375,4 +380,136 @@ body {
 .tab-button {
   position: relative;
   z-index: 10;
+}
+
+/* Polaroid Component */
+#polaroid-wrapper {
+  position: relative;
+  transition: all 0.5s ease-in-out;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 80%;
+}
+
+#polaroid-wrapper.polaroid-active {
+  background-color: white;
+  border: 10px solid #ccc;
+  padding: 20px;
+  margin-top: 20px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  position: relative;
+}
+
+@keyframes floatBounce {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-3px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+#polaroid-wrapper.polaroid-active #topping-overlay,
+#polaroid-wrapper.polaroid-active #ice-overlay,
+#polaroid-wrapper.polaroid-active #tea-overlay {
+  opacity: 0;
+  transform: scale(0.5);
+  animation: fadeInScale 1s ease-out forwards,
+    floatBounce 1.5s ease-in-out infinite;
+}
+
+@keyframes fadeInScale {
+  0% {
+    opacity: 0;
+    transform: scale(0.5);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes floatBounce {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-3px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+/* Alert Popup */
+#confirmation-popup {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.6);
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+}
+
+.popup-content {
+  background-color: #fff;
+  padding: 20px;
+  border: 4px solid #5c3d2e;
+  box-shadow: 4px 4px 12px rgba(0, 0, 0, 0.5);
+  text-align: center;
+  width: 300px;
+}
+
+#confirmation-message {
+  font-size: 14px;
+  margin-bottom: 20px;
+  font-family: "Press Start 2P", sans-serif;
+  color: #000;
+  line-height: 1.6;
+}
+
+.popup-buttons {
+  display: flex;
+  justify-content: space-around;
+  gap: 20px;
+}
+
+.popup-button {
+  padding: 10px 20px;
+  font-size: 12px;
+  font-family: "Press Start 2P", sans-serif;
+  background: #c49a6c;
+  border: 4px solid #5c3d2e;
+  color: white;
+  cursor: pointer;
+  box-shadow: 4px 4px 0px #5c3d2e, 6px 6px 0px rgba(0, 0, 0, 0.5);
+  transition: all 0.1s ease-in-out;
+}
+
+.popup-button:hover {
+  background: #5c3d2e;
+  border-color: #3a2417;
+  box-shadow: 2px 2px 0px #3a2417, 4px 4px 0px rgba(0, 0, 0, 0.5);
+  transform: scale(1.05);
+}
+
+#confirmation-popup.show {
+  display: flex;
+  opacity: 1;
 }

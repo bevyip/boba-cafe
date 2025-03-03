@@ -1,8 +1,41 @@
-/* Starting Scene */
+/* Global Constants */
 const startButton = document.getElementById("start-button");
 const container = document.getElementById("container");
 const startScreen = document.getElementById("start-screen");
 
+const checkoutButton = document.getElementById("checkout-button");
+const checkoutContainer = document.getElementById("checkout-container");
+const polaroidWrapper = document.getElementById("polaroid-wrapper");
+const orderAnotherButton = document.getElementById("order-another-button");
+
+const teaImg = document.getElementById("tea-overlay");
+const iceImg = document.getElementById("ice-overlay");
+const toppingImg = document.getElementById("topping-overlay");
+
+const options = document.querySelectorAll(".option");
+const tabButtons = document.querySelectorAll(".tab-button");
+const tabContents = document.querySelectorAll(".tab-content");
+
+const confirmationPopup = document.getElementById("confirmation-popup");
+const confirmationMessage = document.getElementById("confirmation-message");
+const yesButton = document.getElementById("yes-button");
+const noButton = document.getElementById("no-button");
+
+const drinkNameElement = document.getElementById("drink-name");
+const orderMessages = [
+  "Mmmm, perfect choice!",
+  "Yum, you've got great taste!",
+  "That's a boba masterpiece!",
+  "Sippin' in style!",
+  "Delicious choice, enjoy!",
+  "Bubble-licious! Your order is set!",
+  "That’s a winning combo!",
+  "Boba bliss is on its way!",
+  "You're a boba connoisseur!",
+  "Perfectly brewed, perfectly you!",
+];
+
+/* Starting Scene */
 startButton.addEventListener("mouseover", () => {
   startButton.textContent = "Yes!";
 });
@@ -16,12 +49,13 @@ startButton.addEventListener("click", () => {
   startScreen.style.display = "none";
 });
 
+let selectedTea = "";
+let selectedIce = "none";
+let selectedTopping = "none";
+let orderNumber = `#B${Math.floor(1000 + Math.random() * 9000)}`;
+
 /* Main Scene */
 document.addEventListener("DOMContentLoaded", () => {
-  const options = document.querySelectorAll(".option");
-  const tabButtons = document.querySelectorAll(".tab-button");
-  const tabContents = document.querySelectorAll(".tab-content");
-
   tabContents.forEach((tab) => tab.classList.remove("active"));
   document.getElementById("tea-options").classList.add("active");
 
@@ -55,11 +89,6 @@ document.addEventListener("DOMContentLoaded", () => {
       .getElementById(button.getAttribute("data-tab"))
       .classList.add("active");
   }
-
-  let selectedTea = "";
-  let selectedIce = "none";
-  let selectedTopping = "none";
-  let orderNumber = `#B${Math.floor(1000 + Math.random() * 9000)}`;
 
   options.forEach((option) => {
     option.addEventListener("click", () => {
@@ -111,10 +140,12 @@ document.addEventListener("DOMContentLoaded", () => {
       option.classList.add("selected");
       selectedIce = value;
       updateDrinkImage();
+      updateDrinkName();
     } else if (type === "topping") {
       option.classList.add("selected");
       selectedTopping = value;
       updateToppingOverlay();
+      updateDrinkName();
     }
   }
 
@@ -167,7 +198,7 @@ document.addEventListener("DOMContentLoaded", () => {
       <div class="receipt-line"></div>
     `;
 
-    document.getElementById("drink-name").innerHTML = receiptHTML;
+    drinkNameElement.innerHTML = receiptHTML;
   }
 
   function formatTeaName(tea) {
@@ -200,15 +231,12 @@ document.addEventListener("DOMContentLoaded", () => {
     return iceLevels[ice] || "No Ice";
   }
 
-  const checkoutContainer = document.getElementById("checkout-container");
   function displayCheckoutButton() {
     checkoutContainer.style.opacity = "1";
     checkoutContainer.style.transform = "scale(1)";
   }
 
   function updateDrinkImage() {
-    const teaImg = document.getElementById("tea-overlay");
-
     if (!selectedTea) {
       teaImg.style.display = "none";
     } else {
@@ -223,9 +251,7 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     }
 
-    // Ice image logic (only update if ice is selected)
     let iceFilename = selectedIce !== "none" ? `${selectedIce}.png` : "";
-    const iceImg = document.getElementById("ice-overlay");
     if (iceFilename) {
       iceImg.style.display = "block";
       iceImg.src = `img/ice/${iceFilename}`;
@@ -233,8 +259,6 @@ document.addEventListener("DOMContentLoaded", () => {
       iceImg.style.display = "none";
     }
 
-    // Topping image logic (only update if topping is selected)
-    const toppingImg = document.getElementById("topping-overlay");
     if (selectedTopping !== "none") {
       toppingImg.style.display = "block";
       toppingImg.src = `img/toppings/${selectedTopping}.png`;
@@ -244,7 +268,6 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   function updateToppingOverlay() {
-    const toppingImg = document.getElementById("topping-overlay");
     if (selectedTopping === "none") {
       toppingImg.style.display = "none";
       toppingImg.src = "";
@@ -256,9 +279,6 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 /* End Scene */
-const checkoutButton = document.getElementById("checkout-button");
-const polaroidWrapper = document.getElementById("polaroid-wrapper");
-
 checkoutButton.addEventListener("mouseover", () => {
   checkoutButton.textContent = "Yes!";
 });
@@ -270,12 +290,16 @@ checkoutButton.addEventListener("mouseout", () => {
 checkoutButton.addEventListener("click", function () {
   polaroidWrapper.classList.add("polaroid-active");
 
+  // Hide the panel and checkout options
   document.getElementById("panel").style.display = "none";
   document.getElementById("checkout-options").style.display = "flex";
   checkoutButton.style.display = "none";
-});
 
-const orderAnotherButton = document.getElementById("order-another-button");
+  // Randomly select a success message and display it
+  const randomMessage =
+    orderMessages[Math.floor(Math.random() * orderMessages.length)];
+  document.getElementById("order-message").textContent = randomMessage;
+});
 
 orderAnotherButton.addEventListener("mouseover", () => {
   orderAnotherButton.textContent = "Yes!";
@@ -291,10 +315,6 @@ orderAnotherButton.addEventListener("click", function () {
   polaroidWrapper.classList.remove("polaroid-active");
 
   // Hide images for tea, ice, and topping
-  const teaImg = document.getElementById("tea-overlay");
-  const iceImg = document.getElementById("ice-overlay");
-  const toppingImg = document.getElementById("topping-overlay");
-
   teaImg.style.display = "none";
   iceImg.style.display = "none";
   toppingImg.style.display = "none";
@@ -310,32 +330,24 @@ orderAnotherButton.addEventListener("click", function () {
   selectedTopping = "none";
 
   // Reset the "selected" class on all options
-  const options = document.querySelectorAll(".option");
   options.forEach((option) => {
     option.classList.remove("selected");
   });
 
-  // Reset the receipt content
-  document.getElementById(
-    "drink-name"
-  ).innerHTML = `<p>Select your drink to generate a receipt.</p>`; // Clear receipt content
-
-  // Reset the active tab back to "Tea"
-  const tabButtons = document.querySelectorAll(".tab-button");
-  const tabContents = document.querySelectorAll(".tab-content");
+  drinkNameElement.innerHTML = `<p>Select your drink to generate a receipt.</p>`;
 
   // Remove active class from the current active tab and content
   tabButtons.forEach((button) => {
     button.classList.remove("active");
-    button.style.backgroundColor = ""; // Reset background color
-    button.style.borderColor = ""; // Reset border color
+    button.style.backgroundColor = "";
+    button.style.borderColor = "";
   });
   tabContents.forEach((content) => content.classList.remove("active"));
 
   // Set the "Tea" tab as active
   tabButtons[0].classList.add("active");
-  tabButtons[0].style.backgroundColor = "#5c3d2e"; // Set the background color for the active tab
-  tabButtons[0].style.borderColor = "#3a2417"; // Set the border color for the active tab
+  tabButtons[0].style.backgroundColor = "#5c3d2e";
+  tabButtons[0].style.borderColor = "#3a2417";
 
   // Show the Tea content
   document.getElementById("tea-options").classList.add("active");
@@ -345,16 +357,11 @@ orderAnotherButton.addEventListener("click", function () {
   document.getElementById("panel").style.display = "flex";
   checkoutButton.style.display = "inline-block";
   document.getElementById("checkout-options").style.display = "none";
+  document.getElementById("checkout-container").style.opacity = "0";
 });
 
 function showConfirmationPopup(message, onYes, onNo) {
-  const confirmationPopup = document.getElementById("confirmation-popup");
-  const confirmationMessage = document.getElementById("confirmation-message");
-  const yesButton = document.getElementById("yes-button");
-  const noButton = document.getElementById("no-button");
-
   confirmationMessage.textContent = message;
-
   confirmationPopup.classList.add("show");
 
   // Action for Yes button

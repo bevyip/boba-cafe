@@ -224,16 +224,14 @@ body {
   align-items: center;
   justify-content: center;
   text-align: center;
-  gap: 15px;
   line-height: 1.2;
-  margin-top: 20px;
+  margin-top: 10px;
 }
 
 #checkout-options h2 {
   font-family: "Press Start 2P", sans-serif;
   font-size: 18px;
   color: #5c3d2e;
-  margin-bottom: 20px;
   padding: 0 10px;
 }
 

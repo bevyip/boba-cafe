@@ -12,25 +12,25 @@ This project was created to refine my design skills and provide a seamless user 
 
 ## Features
 
-### 🧸 **Interactive Enhancements**
+### 🎯 **User Engagement**
 
-- **Higher Color Contrast in Selected and Active Elements**: Enhances accessibility and ensures easy identification of selected options.
-- **Popup for Milk Selection on Tea Choices**: When selecting Jasmine Green Tea or Classic Black Tea, a popup asks the user if they want milk. This guides the user through a more tailored, informative experience.
+- **Higher Color Contrast in Selected and Active Elements**: By enhancing the contrast of selected options, users can easily identify their choices, leading to smoother interactions and improved accessibility.
+- **Popup for Milk Selection on Tea Choices**: When selecting Jasmine Green Tea or Classic Black Tea, a popup asks if users want milk, creating a more personalized, streamlined decision-making process.
 
-### 🌊 **User Flow Enhancements**
+### 🛒 **User Flow Optimization**
 
-- **"Ready to Check Out" Button Conditional Visibility**: The button only appears once a tea is selected, preventing frustration from incomplete orders and guiding users through a logical checkout process.
-- **Fully Reset All Values for New Order Experience**: All previous order details are refreshed, ensuring a clean slate for each new order. This enhances usability and user confidence.
+- **"Ready to Check Out" Button Conditional Visibility**: To prevent premature checkout attempts, the "Ready to Check Out" button only appears once a tea is selected, ensuring that users follow a logical flow during the ordering process.
+- **Fully Reset All Values for New Order Experience**: Every new order begins with a clean slate, as all previous selections and order details are reset, offering users a fresh and error-free experience each time.
 
-### 🎨 **Button Interactions and Styling** (Desktop Only)
+### 🎨 **Interactive Design and Feedback** (Desktop Only)
 
-- **Hover Text and Styling Changes**: When users interact with the buttons on a desktop, hover effects provide immediate feedback. The button text changes and box shadows darken, signaling to the user to confirm their selection. These subtle styling changes make the interface more engaging and ensure smooth user interactions.
+- **Hover Text and Styling Changes**: On desktop devices, buttons provide instant visual feedback through hover effects—text changes and box shadows darken when the user interacts with them—making the app more engaging and guiding users through their selections.
 
-### 💫 **Final Scene Refinements**
+### 🎁 **Final Experience and Satisfaction**
 
-- **Polaroid-inspired Bordered Background for Final Order**: A smooth ease-in effect transitions the user from the customization page to the order summary, providing closure and satisfaction.
-- **Bounce Animation for Drink Elements**: Drink elements like tea, toppings, and ice bounce slightly to mimic a dynamic, "live" drink, adding a touch of interactivity and excitement to the final product.
-- **Randomized Success Messages**: Fun, personalized success messages (e.g., “Yum, you’ve got great taste!” and “Perfectly brewed, perfectly you!”) appear after order completion to end the experience on a high note.
+- **Polaroid-inspired Bordered Background for Final Order**: A smooth transition from the customization page to the order summary, using a "polaroid" effect, gives users a sense of closure and accomplishment upon completing their order.
+- **Bounce Animation for Drink Elements**: Tea, toppings, and ice bounce slightly to create a dynamic, "live" feel, making the drink feel tangible and enhancing the interactive experience.
+- **Randomized Success Messages**: Personalized success messages such as “Yum, you’ve got great taste!” and “Perfectly brewed, perfectly you!” provide a fun, rewarding conclusion to the user’s journey.
 
 ---
 

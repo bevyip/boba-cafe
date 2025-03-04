@@ -187,7 +187,7 @@ body {
   opacity: 0;
   display: flex;
   justify-content: center;
-  bottom: 25%;
+  bottom: 40%;
   position: absolute;
   transform: scale(0);
   transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;

@@ -151,7 +151,6 @@ body {
   justify-content: center;
   align-items: center;
   width: 100%;
-  margin-bottom: 5px;
 }
 
 #drink-name {
@@ -187,7 +186,7 @@ body {
   opacity: 0;
   display: flex;
   justify-content: center;
-  bottom: 35%;
+  bottom: 38%;
   position: absolute;
   transform: scale(0);
   transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
